@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import './App.css';
+import About from './components/About';
+import Cart from './components/Cart';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import Product from './components/Product';
+import { getProducts } from './redux/actions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+	useEffect(() => {
+		props.obtenerProductos();
+	}, []);
+	//componentDidMount
+
+	return (
+		<div className="App">
+			<Navbar />
+			<Route exact path="/" component={Home} />
+			<Route
+				path="/product/:id"
+				render={({ match }) => <Product match={match} />}
+			/>
+			<Route exact path="/cart" component={Cart} />
+			<Route exact path="/about" render={() => <About />} />
+		</div>
+	);
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+	return {
+		obtenerProductos: () => dispatch(getProducts()),
+	};
+}
+
+export default connect(null, mapDispatchToProps)(App);

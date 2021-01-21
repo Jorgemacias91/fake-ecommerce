@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: aliceblue;
+    padding: 1em 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #802c6e
+}
+
+.navbar__logo {
+    width: 3em;
+    height: 3em;
+}
+
+.navbar__logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.navbar__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar__menu li {
+    margin: 0 1em;
+}
+
+.navbar__cart {
+    align-self: center;
+}
